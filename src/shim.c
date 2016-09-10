@@ -1053,7 +1053,7 @@ execute_query (struct mg_connection *conn, const struct mg_request_info *ri)
   mg_get_var (ri->query_string, k, "user", USER, MAX_VARLEN);
   mg_get_var (ri->query_string, k, "password", PASS, MAX_VARLEN);
   memset (var, 0, MAX_VARLEN);
-  syslog (LOG_INFO, "execute_query for session id %d", id);
+  syslog (LOG_INFO, "execute_query for session id %d %s %s", id, USER, PASS);
   s = find_session (id);
   if (!s)
     {
