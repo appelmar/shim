@@ -16,6 +16,7 @@ curl -f -s -k "https://${host}:${port}/read_lines?id=${id}&n=0"
 curl -f -s -k "https://${host}:${port}/release_session?id=${id}"
 echo
 
+# Test the new prefix option to issue multiple commands in a single connection
 # A namespace example. Part 1: Create namespace 'cazart'
 id=$(curl -s -k "https://${host}:${port}/new_session")
 curl -f -s -k "https://${host}:${port}/execute_query?id=${id}&query=create_namespace('cazart')&user=${USER}&password=${PASSWORD}&release=1"
@@ -25,7 +26,6 @@ echo "create_namespace('cazart')"
 id=$(curl -s -k "https://${host}:${port}/new_session")
 curl -f -s -k "https://${host}:${port}/execute_query?id=${id}&prefix=set_namespace('cazart')&query=store(list(),yikes)&user=${USER}&password=${PASSWORD}&release=1"
 
-# Test the new prefix option to issue multiple commands in a single connection
 # context (list the contents of the 'cazart' namespace)
 id=$(curl -s -k "https://${host}:${port}/new_session")
 curl -f -s -k "https://${host}:${port}/execute_query?id=${id}&prefix=set_namespace('cazart')&query=list()&user=${USER}&password=${PASSWORD}"
